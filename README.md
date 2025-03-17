@@ -15,19 +15,21 @@ Student IDs: 614 0617
 
 2. Pig (3.5)
 (a) State space: 
+    
     The state is defined by: (i, j, k). 
     for which: 
-        0 <= i <= 100 is the total score of the player up to the turn. 
-        0 <= j <= 100 is the total score of the opponent up to the turn.
-        0 <= k < 100 - i is the turn total of the current player. 
+    0 <= i <= 100 is the total score of the player up to the turn. 
+    0 <= j <= 100 is the total score of the opponent up to the turn.
+    0 <= k < 100 - i is the turn total of the current player. 
 
     The goal is to reach 100 points, in other word
-    	If the player has i + k >= 100, they win. (j + k >= for the opponent).
+    If the player has i + k >= 100, they win. (j + k >= for the opponent).
 
     Actions:
-        Roll: Rolls a die, if they got a 1, k resets to 0, and other player takes over, otherwise, the points are added to k and the player may roll again or hold. 
+    
+    Roll: Rolls a die, if they got a 1, k resets to 0, and other player takes over, otherwise, the points are added to k and the player may roll again or hold. 
 
-        Hold: The turn total k is added to the player’s score, and it becomes the opponent’s turn.
+    Hold: The turn total k is added to the player’s score, and it becomes the opponent’s turn.
 
 (b) 
     Let P(i,j,k) is the probability of winning from this state.
@@ -74,21 +76,21 @@ Student IDs: 614 0617
     State space: 
     The state is defined by: (i, j, k). 
     for which: 
-        0 <= i <= 100 is the total score of the player up to the turn. 
-        0 <= j <= 100 is the total score of the opponent up to the turn.
-        0 <= k < 100 - i is the turn total of the current player. 
+    0 <= i <= 100 is the total score of the player up to the turn. 
+    0 <= j <= 100 is the total score of the opponent up to the turn.
+    0 <= k < 100 - i is the turn total of the current player. 
 
     The goal is to reach 100 points, in other word
-    	If the player has i + k >= 100, they win. (j + k >= for the opponent).
+    If the player has i + k >= 100, they win. (j + k >= for the opponent).
 
     Actions:
         
-        Roll: Two standard dice are rolled.
-        If neither shows a 1, their sum is added to the turn total.
-        If a single 1 is rolled, the player's turn ends with the loss of the turn total.
-        If two 1's are rolled, the player's turn ends with the loss of the turn total and score.
+    Roll: Two standard dice are rolled.
+    If neither shows a 1, their sum is added to the turn total.
+    If a single 1 is rolled, the player's turn ends with the loss of the turn total.
+    If two 1's are rolled, the player's turn ends with the loss of the turn total and score.
 
-        Hold: The turn total k is added to the player’s score, and it becomes the opponent’s turn.
+    Hold: The turn total k is added to the player’s score, and it becomes the opponent’s turn.
 (b)
     Let P(i,j,k) is the probability of winning from this state
 
