@@ -55,7 +55,7 @@ Student IDs: 614 0617
     
     The probability that the first player will win if both players play optimally is given by p[0][0][0] which is 0.5305927250129694.
 
-(d) 
+(d)      
     The optimal policy is based on balancing risk (rolling a 1 and losing all turn points) and reward (maximizing the probability of reaching 100 points before the opponent). The key elements are:
 
 	Rolling Strategy: A player should continue rolling if their turn total k is below a certain threshold (at least 21 if not yet reached the goal). This threshold is not constant but depends on the player’s score i, the opponent’s score j, and the remaining distance to 100.
@@ -64,7 +64,7 @@ Student IDs: 614 0617
 	Risk vs. Reward Consideration: Rolling comes with a 1/6 risk of rolling a 1 and losing the turn total k. The policy carefully evaluates when the expected gain from rolling outweighs this risk.
 	
     Players should take more risks when behind and play more conservatively when ahead.
-    
+
     Visualization Insight: The 3D policy landscape(given in class) shows multiple local minima, meaning that depending on the game state (i, j, k), the best threshold for stopping may vary. The player should stop rolling before falling into a disadvantageous local minimum.
 
 

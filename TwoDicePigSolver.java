@@ -59,7 +59,7 @@ public class TwoDicePigSolver {
     public boolean shouldRoll(int i, int j, int k) {
         return roll[i][j][k];
     }
-    
+
     public void outputPolicy() {
         for (int i = 0; i < goal; i++) {
             for (int j = 0; j < goal; j++) {
