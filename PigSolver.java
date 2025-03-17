@@ -62,24 +62,6 @@ public class PigSolver {
     public boolean shouldRoll(int i, int j, int k) {
         return roll[i][j][k];
     }
-
-    
-
-    public void savePolicyToFile(String filename, int fixedTurnTotal) {
-        try (FileWriter writer = new FileWriter(filename)) {
-            writer.write("Player Score,Opponent Score,Turn Total,Decision\n"); // Add column headers
-            for (int i = 0; i < goal; i++) {
-                for (int j = 0; j < goal; j++) {
-                    for (int k = 0; k < goal - i; k++) {
-                        writer.write(i + "," + j + "," + k + "," + (roll[i][j][k] ? "Roll" : "Hold") + "\n");
-                    }
-                }
-            }
-            System.out.println("Policy saved to " + filename);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
     
     public void outputPolicy() {
         for (int i = 0; i < goal; i++) {
@@ -125,25 +107,16 @@ public class PigSolver {
     }
 
     
-    public static void main(String[] args) {
+    public 
+    static void main(String[] args) {
         int goal = 100;
         double epsilon = 1e-9;
 
-        // try {
-        //     if (args.length > 2)
-        //         throw new IllegalArgumentException("Too many arguments");
-        //     if (args.length > 0) goal = Integer.parseInt(args[0]);
-        //     if (args.length > 1) epsilon = Double.parseDouble(args[1]);
-        // } catch (Exception e) {
-        //     System.out.println(e);
-        //     System.out.println("Usage: java PigSolver [int goal [double epsilon]]");
-        //     System.exit(1);
-        // }
-
         PigSolver solver = new PigSolver(goal, epsilon);
-        // solver.outputPolicy();
-        // System.out.println("Probability that the first player will win if both play optimally: " + solver.pWin(0, 0, 0));
-        // solver.advise();
-        solver.savePolicyToFile("policy.csv", 10);
+        solver.outputPolicy();
+        System.out.println("Probability that the first player will win if both play optimally: " + solver.pWin(0, 0, 0));
+        solver.advise();
+
+        // solver.savePolicyToFile("policy.csv", 10);
     }
 }
