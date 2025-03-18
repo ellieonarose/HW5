@@ -11,7 +11,56 @@ Student IDs: 614 0617
 
 ---------------------
 1. Pig Solitaire (2.4)
+(a)
+State space.
 
+		The goal is the number the player must try to reach within their allowed turns
+		n is the number of rolls allowed to reach the goal 
+		0 <= i <= goal is the total score of the player
+   			
+		0 <= j <= n is the number of turns the player has remaining
+		
+		0 <= k < 1, 1 < k <= goal is the number of points the player has accumulated in the current turn but not yet added to i.
+		
+		Actions:
+		If a player decides to roll, one die is rolled. If the die does not land on 1, the landed number is added to the turn total (k). If a 1 is rolled, the player's turn total becomes 0, and the next turn begins.
+		
+		If a player decides to hold, the turn total (k) is added to the current score (i) and the next turn begins. 
+
+
+(b) Write the equations that describe optimal play.
+	
+	 Equation for a roll:
+		1/6 * pWin(i, j-1, 0) + 1.0/6 * pWin(i, j-1, k+2) + 1.0/6 * pWin(i, j-1, k+3) + 1.0/6 * pWin(i, j-1, k+4) + 1.0/6 * pWin(i, j-1, k+5) + 1.0/6 * pWin(i, j-1, k+6). 
+		Where the first pWin is the probability of winning in the 1/6th chance that the player rolls a 1 and loses their score. The rest of the equation is each 
+		of the 1/6th chances of rolling another score and the percentage of winning when having that number added to the round total. 
+	
+	Equation for a hold:  
+	pWin(i+k, j-1, 0) where this is the percentage of winning when the player adds their round total to their current 
+	score and has one fewer turn to reach the goal.
+	
+	Optimal play: 
+	Maximum of the result hold and roll.
+
+
+(c) Prove that the state space is acyclic, i.e. that states cannot repeat.
+
+
+	Every turn, one of two things will happen. Either the current player score will increase by their turn total or it will remain the same with the roll of a 1. While k, the turn total, may repeat based on roll, the total score of the player will never return to 0 (or any previous score). Since the scores can only move in the positive direction, there is no way for any state to repeat itself if a score is registered. If no score is registered (when the player rolls a 1), every component of the state space will remain the same. In both cases, no cycle is formed because the state can never change to something it was in the past. Also, there are only a certain number of moves allowed. Every move that is taken is one move taken away from the number of rolls remaining, meaning this state is always changing in the negative direction. This will never cycle back. 
+
+(d) Compute the optimal policy for g = 100 and n = 10. Again, assume that an optimal player with a winning turn total will hold and win.
+
+	I have created a spreadsheet detailing what the player should do at each state. Here is the link to that: 
+	https://docs.google.com/spreadsheets/d/108DOtctWtUNZLHozID3WU1gPEfjiZwQxmoTCyNjNxG0/edit?usp=sharing 
+
+(e) Summarize or visualize the policy, and describe it qualitatively in your own words.
+
+	The earlier in the game, the fewer risks there are that need to be taken. As the game progresses, though, if the player is far away from the goal, more risks need to be taken to ensure a win. The lower the score toward the end, the more the player needs to roll to reach the goal. As shown, if the player is on turn one (ten turns left) with zero points, they can hold at 22. If they are on turn ten, though, they must play until they get 100 points. Otherwise, there is no chance they can win.
+
+
+(f) For g = 100, what is the smallest n for which the optimal player’s initial win probability is ≥ .50?
+
+	n = 11
 
 2. Pig (3.5)
    
@@ -90,10 +139,9 @@ Student IDs: 614 0617
 
     Actions:
         
-    Roll: Two standard dice are rolled.
-    If neither shows a 1, their sum is added to the turn total.
-    If a single 1 is rolled, the player's turn ends with the loss of the turn total.
-    If two 1's are rolled, the player's turn ends with the loss of the turn total and score.
+    Roll: One standard die is rolled.
+    If it does not show a 1, their sum is added to the turn total.
+    If a 1 is rolled, the player's turn ends with the loss of the turn total.
 
     Hold: The turn total k is added to the player’s score, and it becomes the opponent’s turn.
 (b)
